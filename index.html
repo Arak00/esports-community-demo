@@ -1,0 +1,4672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArenaMax Gaming - Esports Betting</title>
+    <style>
+        :root {
+            /* ========================================
+               DESIGN SYSTEM TOKENS
+               ArenaMax Gaming Theme
+               ======================================== */
+            
+            /* Background Colors */
+            --op-bg-primary: #020617;      /* Slate 950 - darkest */
+            --op-bg-secondary: #0f172a;    /* Slate 900 */
+            --op-bg-tertiary: #1e293b;     /* Slate 800 */
+            --op-bg-quartiary: #334155;    /* Slate 700 */
+            
+            /* Text Colors */
+            --op-text-primary: #f8fafc;    /* Slate 50 */
+            --op-text-secondary: #94a3b8;  /* Slate 400 */
+            --op-text-tertiary: #64748b;   /* Slate 500 */
+            --op-text-disabled: #475569;   /* Slate 600 */
+            
+            /* Border Colors */
+            --op-border: #334155;          /* Slate 700 */
+            --op-border-secondary: #475569; /* Slate 600 */
+            
+            /* Accent Colors - Esports Purple/Cyan Theme */
+            --op-accent: #8b5cf6;          /* Violet 500 - Primary accent */
+            --op-accent-hover: #7c3aed;    /* Violet 600 */
+            --op-accent-active: #6d28d9;   /* Violet 700 */
+            
+            /* Primary Button (light background) */
+            --op-primary-bg: #f8fafc;      /* Slate 50 */
+            --op-primary-text: #020617;    /* Slate 950 */
+            
+            /* Secondary Button Colors */
+            --op-secondary: #64748b;       /* Slate 500 - default */
+            --op-secondary-hover: #94a3b8; /* Slate 400 */
+            --op-secondary-active: #cbd5e1; /* Slate 300 */
+            
+            /* Status Colors */
+            --op-success: #22c55e;         /* Green 500 */
+            --op-success-bg: rgba(34, 197, 94, 0.15);
+            --op-warning: #eab308;         /* Yellow 500 */
+            --op-warning-bg: rgba(234, 179, 8, 0.15);
+            --op-error: #ef4444;           /* Red 500 */
+            --op-error-bg: rgba(239, 68, 68, 0.15);
+            --op-error-secondary: #f87171; /* Red 400 - lighter for badges */
+            --op-error-light: #fca5a5;     /* Red 300 - for icons */
+            
+            /* Legacy token aliases */
+            --op-highlight: #8b5cf6;
+            --op-win-green: #22c55e;
+            --widget-gold: #8b5cf6;        /* Now uses accent */
+            
+            /* Badge Design System */
+            --badge-medium-height: 24px;
+            --badge-medium-padding: 8px 10px;
+            --badge-medium-font-size: 13px;
+            --badge-large-height: 28px;
+            --badge-large-padding: 8px 12px;
+            --badge-large-font-size: 13px;
+            
+            --badge-accent-bg: #8b5cf6;
+            --badge-accent-text: #ffffff;
+            --badge-primary-bg: #f8fafc;
+            --badge-primary-text: #020617;
+            --badge-secondary-bg: #334155;
+            --badge-secondary-text: #cbd5e1;
+            --badge-tertiary-bg: transparent;
+            --badge-tertiary-text: #cbd5e1;
+            --badge-tertiary-border: #475569;
+            --badge-error-bg: rgba(239, 68, 68, 0.15);
+            --badge-error-text: #f87171;
+            --badge-success-bg: rgba(34, 197, 94, 0.15);
+            --badge-success-text: #22c55e;
+            
+            /* Input Design System */
+            --input-small-height: 36px;
+            --input-small-padding: 0 12px;
+            --input-small-font-size: 15px;
+            --input-medium-height: 44px;
+            --input-medium-padding: 0 16px;
+            --input-medium-font-size: 17px;
+            --input-bg: #1e293b;
+            --input-bg-hover: #334155;
+            --input-border: #334155;
+            --input-border-hover: #475569;
+            --input-border-focus: #8b5cf6;
+            --input-placeholder: #cbd5e1;
+            --input-text: #f8fafc;
+            
+            /* Tab Design System */
+            --pill-tab-bg: #020617;
+            --pill-tab-padding: 4px;
+            --pill-tab-radius: 8px;
+            --pill-tab-item-height: 32px;
+            --pill-tab-item-padding: 0 20px;
+            --pill-tab-item-gap: 8px;
+            --pill-tab-item-radius: 8px;
+            --pill-tab-item-font-size: 15px;
+            --pill-tab-default-bg: transparent;
+            --pill-tab-default-text: #cbd5e1;
+            --pill-tab-default-weight: 600;
+            --pill-tab-hover-bg: rgba(100, 116, 139, 0.15);
+            --pill-tab-hover-text: #e2e8f0;
+            --pill-tab-active-bg: #1e293b;
+            --pill-tab-active-text: #f8fafc;
+            --pill-tab-active-weight: 500;
+            
+            /* Sidebar Design System */
+            --sidebar-bg: #0f172a;
+            --sidebar-padding: 12px;
+            --sidebar-radius: 12px;
+            --sidebar-gap: 16px;
+            --sidebar-width: 276px;
+            --sidebar-action-bg: #1e293b;
+            --sidebar-action-radius: 8px;
+            --sidebar-action-padding: 8px;
+            --sidebar-action-icon-size: 16px;
+            --sidebar-action-icon-color: #cbd5e1;
+            --sidebar-title-font-size: 10px;
+            --sidebar-title-font-weight: 500;
+            --sidebar-title-color: #94a3b8;
+            
+            /* Odd Button Design System */
+            --odd-btn-bg: #0f172a;
+            --odd-btn-radius: 8px;
+            --odd-btn-transition: all 150ms ease;
+            --odd-btn-vertical-padding: 12px 8px;
+            --odd-btn-vertical-gap: 4px;
+            --odd-btn-label-font-size: 12px;
+            --odd-btn-label-font-weight: 500;
+            --odd-btn-label-color: #94a3b8;
+            --odd-btn-value-font-size: 15px;
+            --odd-btn-value-font-weight: 700;
+            --odd-btn-value-color: #f8fafc;
+            --odd-btn-hover-bg: rgba(139, 92, 246, 0.12);
+            --odd-btn-pressed-bg: rgba(139, 92, 246, 0.20);
+            --odd-btn-active-bg: rgba(139, 92, 246, 0.20);
+            --odd-btn-active-border: #8b5cf6;
+            --odd-btn-active-value-color: #a78bfa;
+            --odd-btn-increased-color: #22c55e;
+            --odd-btn-decreased-color: #ef4444;
+            
+            /* Match Card Design System */
+            --match-card-bg: #020617;
+            --match-card-padding: 12px 16px;
+            --match-card-gap: 16px;
+            --match-card-border-default: #334155;
+            --match-card-border-selected: #a78bfa;
+            --match-card-border-live: #dc2626;
+            --match-card-team-font-size: 15px;
+            --match-card-team-font-weight: 600;
+            --match-card-team-color: #cbd5e1;
+            --match-card-meta-color: #94a3b8;
+            --match-card-meta-live-color: #29b65e;
+            --match-card-score-bg: #1e293b;
+            --match-card-score-color: #cbd5e1;
+            
+            /* Betslip Design System */
+            --betslip-bg: #0f172a;
+            --betslip-padding: 16px;
+            --betslip-gap: 12px;
+            --betslip-cta-bg: #8b5cf6;
+            --betslip-cta-height: 40px;
+            --betslip-cta-radius: 8px;
+            
+            /* Icon & Button Sizes */
+            --icon-size-sm: 16px;
+            --icon-size-md: 20px;
+            --icon-size-lg: 24px;
+            --btn-small-height: 28px;
+            --btn-medium-height: 36px;
+            --btn-large-height: 44px;
+            
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 12px;
+            --spacing-lg: 16px;
+            --spacing-xl: 24px;
+            --spacing-2xl: 32px;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.2s ease;
+            --transition-slow: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--op-bg-primary);
+            color: var(--op-text-primary);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        .header {
+            background: var(--op-bg-secondary);
+            border-bottom: 1px solid var(--op-border);
+            padding: 0 var(--spacing-xl);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2xl);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: var(--font-weight-bold);
+            color: var(--op-accent);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--op-text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--pill-tab-item-height);
+            padding: var(--pill-tab-item-padding);
+            gap: var(--pill-tab-item-gap);
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            color: var(--pill-tab-default-text);
+            background: var(--pill-tab-default-bg);
+            border-radius: var(--pill-tab-item-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-item:hover {
+            background: var(--pill-tab-hover-bg);
+            color: var(--pill-tab-hover-text);
+        }
+
+        .nav-item.active {
+            background: var(--pill-tab-active-bg);
+            color: var(--pill-tab-active-text);
+            font-weight: var(--pill-tab-active-weight);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .btn-login {
+            height: var(--btn-medium-height);
+            padding: 0 var(--spacing-xl);
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            color: var(--op-secondary);
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-login:hover {
+            background: rgba(100, 116, 139, 0.12);
+            color: var(--op-secondary-hover);
+        }
+
+        .btn-register {
+            height: var(--btn-medium-height);
+            padding: 0 var(--spacing-xl);
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            color: #ffffff;
+            background: var(--op-accent);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-register:hover {
+            background: var(--op-accent-hover);
+        }
+
+        /* Secondary Navigation */
+        .secondary-nav {
+            background: var(--op-bg-secondary);
+            border-bottom: 1px solid var(--op-border);
+            padding: 0 var(--spacing-xl);
+        }
+
+        .secondary-nav-items {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .secondary-nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 20px;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: var(--font-weight-medium);
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border-bottom: 2px solid transparent;
+            position: relative;
+        }
+
+        .secondary-nav-item:hover {
+            color: #cbd5e1;
+        }
+
+        .secondary-nav-item.active {
+            color: #f8fafc;
+            border-bottom-color: var(--op-accent);
+        }
+
+        .secondary-nav-item.community::after {
+            content: 'NEW';
+            position: absolute;
+            top: var(--spacing-sm);
+            right: -2px;
+            display: inline-flex;
+            align-items: center;
+            height: 18px;
+            padding: 0 6px;
+            font-size: 10px;
+            font-weight: var(--font-weight-semibold);
+            background: var(--badge-accent-bg);
+            color: var(--badge-accent-text);
+            border-radius: var(--radius-full);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            gap: var(--spacing-xl);
+        }
+
+        /* Left Sidebar - Games Navigation */
+        .games-sidebar {
+            width: var(--sidebar-width);
+            flex-shrink: 0;
+            background: var(--sidebar-bg);
+            border-radius: var(--sidebar-radius);
+            padding: var(--sidebar-padding);
+            display: flex;
+            flex-direction: column;
+            gap: var(--sidebar-gap);
+            overflow: hidden;
+        }
+
+        .sidebar-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+
+        .sidebar-action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--sidebar-action-padding);
+            background: var(--sidebar-action-bg);
+            border-radius: var(--sidebar-action-radius);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .sidebar-action-btn:hover {
+            background: #334155;
+        }
+
+        .sidebar-action-btn.active {
+            background: var(--op-accent);
+        }
+
+        .sidebar-action-btn svg {
+            width: var(--sidebar-action-icon-size);
+            height: var(--sidebar-action-icon-size);
+            color: var(--sidebar-action-icon-color);
+        }
+
+        .sidebar-action-btn.active svg {
+            color: white;
+        }
+
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-title {
+            font-size: var(--sidebar-title-font-size);
+            font-weight: var(--sidebar-title-font-weight);
+            color: var(--sidebar-title-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 var(--spacing-sm);
+            margin: 0;
+        }
+
+        /* Popular Tournament Row */
+        .popular-tournament {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 56px;
+            padding: 12px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .popular-tournament:hover {
+            background: rgba(139, 92, 246, 0.08);
+        }
+
+        .popular-tournament-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .popular-tournament-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .popular-tournament-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .popular-tournament-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .popular-tournament-game {
+            font-size: 11px;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+
+        .popular-tournament-arrow {
+            width: 16px;
+            height: 16px;
+            color: #64748b;
+            flex-shrink: 0;
+        }
+
+        /* Game Row */
+        .game-row {
+            display: flex;
+            flex-direction: column;
+            background: #1e293b;
+            border-radius: 8px;
+            transition: all var(--transition-fast);
+            margin-bottom: 4px;
+        }
+
+        .game-row-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 8px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .game-row-header:hover {
+            background: rgba(139, 92, 246, 0.08);
+            border-radius: 8px;
+        }
+
+        .game-row-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .game-row-name {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .game-row.expanded .game-row-name {
+            color: #f8fafc;
+        }
+
+        .game-row-arrow {
+            width: 16px;
+            height: 16px;
+            color: #64748b;
+            flex-shrink: 0;
+            transition: transform var(--transition-fast);
+        }
+
+        .game-row.expanded .game-row-arrow {
+            transform: rotate(180deg);
+            color: #cbd5e1;
+        }
+
+        .game-row-content {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            padding: 4px 0;
+        }
+
+        .game-row.expanded .game-row-content {
+            display: flex;
+        }
+
+        /* Region/Tournament Row */
+        .region-row {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .region-row-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+        }
+
+        .region-row:hover .region-row-header {
+            background: rgba(139, 92, 246, 0.06);
+            border-radius: 6px;
+        }
+
+        .region-row-flag {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .region-row-name {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .region-row:hover .region-row-name {
+            color: #e2e8f0;
+        }
+
+        .region-row.expanded .region-row-name {
+            color: #f8fafc;
+        }
+
+        .region-row-arrow {
+            width: 16px;
+            height: 16px;
+            color: #64748b;
+            flex-shrink: 0;
+            transition: all var(--transition-fast);
+        }
+
+        .region-row.expanded .region-row-arrow {
+            transform: rotate(180deg);
+            color: #cbd5e1;
+        }
+
+        .region-row-content {
+            display: none;
+            flex-direction: column;
+        }
+
+        .region-row.expanded .region-row-content {
+            display: flex;
+        }
+
+        .nested-tournament {
+            display: flex;
+            align-items: center;
+            height: 22px;
+            padding: 4px 0 4px 24px;
+            cursor: pointer;
+        }
+
+        .nested-tournament-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #94a3b8;
+            transition: color var(--transition-fast);
+        }
+
+        .nested-tournament:hover .nested-tournament-name {
+            color: #cbd5e1;
+        }
+
+        .nested-tournament.active .nested-tournament-name {
+            color: #f8fafc;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+        }
+
+        .view-all {
+            font-size: 13px;
+            font-weight: var(--font-weight-medium);
+            color: var(--op-accent);
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+
+        .view-all:hover {
+            color: var(--op-accent-hover);
+        }
+
+        /* Featured Cards */
+        .featured-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .featured-card {
+            background: var(--op-bg-secondary);
+            border: 1px solid var(--op-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .featured-card:hover {
+            border-color: var(--op-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.15);
+        }
+
+        .card-tournament {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 11px;
+            color: var(--op-text-tertiary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-tournament-badge {
+            display: inline-flex;
+            align-items: center;
+            height: var(--badge-medium-height);
+            padding: var(--badge-medium-padding);
+            background: var(--badge-success-bg);
+            color: var(--badge-success-text);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--badge-medium-font-size);
+        }
+
+        .card-time {
+            font-size: 11px;
+            color: var(--op-accent);
+        }
+
+        .card-teams {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .team-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .team-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: var(--op-bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: var(--font-weight-bold);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .team-name {
+            flex: 1;
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            color: var(--op-text-primary);
+        }
+
+        .team-score {
+            font-size: 16px;
+            font-weight: var(--font-weight-bold);
+            color: var(--op-accent);
+        }
+
+        .card-odds {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+        }
+
+        .odd-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--odd-btn-vertical-gap);
+            background: var(--odd-btn-bg);
+            border: none;
+            border-radius: var(--odd-btn-radius);
+            padding: var(--odd-btn-vertical-padding);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--odd-btn-transition);
+        }
+
+        .odd-btn:hover {
+            background: var(--odd-btn-hover-bg);
+        }
+
+        .odd-label {
+            font-size: var(--odd-btn-label-font-size);
+            font-weight: var(--odd-btn-label-font-weight);
+            color: var(--odd-btn-label-color);
+        }
+
+        .odd-value {
+            font-size: var(--odd-btn-value-font-size);
+            font-weight: var(--odd-btn-value-font-weight);
+            color: var(--odd-btn-value-color);
+        }
+
+        /* Events Section */
+        .events-section {
+            background: var(--op-bg-secondary);
+            border: 1px solid var(--op-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .events-header {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-lg) 20px;
+            border-bottom: 1px solid var(--op-border);
+            gap: var(--spacing-lg);
+        }
+
+        .events-title {
+            font-size: 16px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .events-tabs {
+            display: flex;
+            gap: 2px;
+            margin-left: auto;
+            background: var(--pill-tab-bg);
+            padding: 2px;
+            border-radius: var(--radius-md);
+        }
+
+        .events-tab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 28px;
+            padding: 0 var(--spacing-md);
+            font-size: 12px;
+            font-weight: var(--pill-tab-default-weight);
+            color: var(--pill-tab-default-text);
+            background: var(--pill-tab-default-bg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .events-tab:hover {
+            background: var(--pill-tab-hover-bg);
+            color: var(--pill-tab-hover-text);
+        }
+
+        .events-tab.active {
+            background: var(--pill-tab-active-bg);
+            color: var(--pill-tab-active-text);
+            font-weight: var(--pill-tab-active-weight);
+        }
+
+        .events-table {
+            width: 100%;
+        }
+
+        .event-row {
+            display: grid;
+            grid-template-columns: 1fr 100px 100px 40px;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--op-border);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .event-row:hover {
+            background: rgba(139, 92, 246, 0.04);
+        }
+
+        .event-row:last-child {
+            border-bottom: none;
+        }
+
+        .event-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .event-time {
+            font-size: 11px;
+            color: var(--op-text-tertiary);
+        }
+
+        .event-teams {
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            color: var(--op-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-format {
+            font-size: 10px;
+            color: var(--op-accent);
+            background: rgba(139, 92, 246, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .event-odd {
+            background: var(--odd-btn-bg);
+            border: none;
+            border-radius: var(--odd-btn-radius);
+            padding: var(--spacing-sm);
+            text-align: center;
+            font-size: var(--odd-btn-value-font-size);
+            font-weight: var(--odd-btn-value-font-weight);
+            color: var(--odd-btn-value-color);
+            cursor: pointer;
+            transition: var(--odd-btn-transition);
+        }
+
+        .event-odd:hover {
+            background: var(--odd-btn-hover-bg);
+        }
+
+        .event-more {
+            font-size: 12px;
+            color: var(--op-text-tertiary);
+            text-align: center;
+        }
+
+        /* Right Sidebar - Community Widget */
+        .community-sidebar {
+            width: 320px;
+            flex-shrink: 0;
+        }
+
+        /* Community Widget */
+        .community-widget {
+            background: var(--op-bg-secondary);
+            border: 1px solid var(--op-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .widget-header {
+            background: var(--op-bg-tertiary);
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--op-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .widget-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .widget-title-group {
+            flex: 1;
+        }
+
+        .widget-title {
+            font-size: 15px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+        }
+
+        .widget-subtitle {
+            font-size: 11px;
+            color: var(--op-text-tertiary);
+        }
+
+        .widget-badge {
+            display: inline-flex;
+            align-items: center;
+            height: var(--badge-medium-height);
+            padding: var(--badge-medium-padding);
+            background: var(--badge-accent-bg);
+            color: var(--badge-accent-text);
+            font-size: var(--badge-medium-font-size);
+            font-weight: var(--font-weight-semibold);
+            border-radius: var(--radius-full);
+        }
+
+        .widget-content {
+            padding: var(--spacing-lg);
+        }
+
+        /* Ticket Preview Cards */
+        .ticket-preview {
+            background: var(--op-bg-primary);
+            border: 1px solid var(--op-border);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            margin-bottom: var(--spacing-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .ticket-preview:hover {
+            border-color: var(--op-accent);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+        }
+
+        .ticket-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ticket-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--op-accent), var(--op-accent-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: var(--font-weight-bold);
+            color: #ffffff;
+        }
+
+        .ticket-user-info {
+            flex: 1;
+        }
+
+        .ticket-username {
+            font-size: 13px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+        }
+
+        .ticket-stats {
+            font-size: 11px;
+            color: var(--op-text-tertiary);
+        }
+
+        .ticket-status {
+            display: inline-flex;
+            align-items: center;
+            height: var(--badge-medium-height);
+            padding: var(--badge-medium-padding);
+            border-radius: var(--radius-full);
+            font-size: var(--badge-medium-font-size);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .ticket-status.active {
+            background: var(--op-warning-bg);
+            color: var(--op-warning);
+        }
+
+        .ticket-status.won {
+            background: var(--badge-success-bg);
+            color: var(--badge-success-text);
+        }
+
+        .ticket-bet {
+            font-size: 13px;
+            color: var(--op-text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .ticket-footer {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .ticket-footer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .ticket-odds {
+            font-size: 12px;
+            color: var(--op-text-tertiary);
+        }
+
+        .ticket-odds span {
+            color: var(--op-accent);
+            font-weight: 600;
+        }
+
+        .ticket-inspired {
+            font-size: 11px;
+            color: var(--op-text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ticket-copy-btn {
+            background: var(--op-accent);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-md);
+            height: var(--btn-medium-height);
+            padding: 0 14px;
+            font-size: 12px;
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .ticket-copy-btn:hover {
+            background: var(--op-accent-hover);
+        }
+
+        .ticket-copy-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Expand Toggle */
+        .widget-expand-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px dashed var(--op-border);
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--op-text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .widget-expand-toggle:hover {
+            background: rgba(139, 92, 246, 0.05);
+            border-color: var(--op-accent);
+            color: var(--op-accent);
+        }
+
+        /* Left Sidebar Panel (Feed/Competitions/Analyses) */
+        .left-sidebar {
+            min-width: 300px;
+            max-width: 300px;
+            flex-shrink: 0;
+            background: #0F172A;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+            height: calc(100vh - 120px);
+            position: sticky;
+            top: 0;
+        }
+
+        .back-nav-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px;
+            cursor: pointer;
+            color: #94A3B8;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .back-nav-button:hover {
+            color: #F8FAFC;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-tabs {
+            display: flex;
+            gap: 8px;
+            padding: 12px 8px;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 90px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 8px;
+            color: #94A3B8;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .tab-button.active {
+            background: #1E293B;
+            color: #F8FAFC;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .tab-button:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.05);
+            color: #CBD5E1;
+        }
+
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Bet Cards */
+        .bet-cards-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .bet-card {
+            background: #1E293B;
+            margin: 0 0 8px 0;
+            padding: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .bet-card:hover {
+            background: #334155;
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .bet-card.trending::before {
+            content: '🔥 TRENDING';
+            position: absolute;
+            top: -8px;
+            right: 16px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .bet-card.won-bet {
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            background: linear-gradient(135deg, #1E293B 0%, rgba(34, 197, 94, 0.05) 100%);
+        }
+
+        .bet-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .bettor-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bettor-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .bettor-avatar.identified {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .bettor-avatar.anonymous {
+            background: #6b7280;
+        }
+
+        .bettor-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #94A3B8;
+        }
+
+        .bettor-name.identified {
+            color: #F8FAFC;
+            font-weight: 600;
+        }
+
+        .win-rate {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #64748B;
+        }
+
+        .win-rate.text-green {
+            color: #22c55e;
+        }
+
+        .match-info {
+            margin-bottom: 12px;
+        }
+
+        .match-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #F8FAFC;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .match-league {
+            font-size: 11px;
+            font-weight: 500;
+            color: #64748B;
+        }
+
+        .bet-details {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid #8b5cf6;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .bet-info {
+            flex: 1;
+        }
+
+        .bet-type {
+            color: #a78bfa;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .bet-stakes-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            font-size: 11px;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .stake-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 6px;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        .win-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 6px;
+            color: #4ade80;
+            font-weight: 700;
+        }
+
+        .bet-odds-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .bet-odds {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .bet-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .inspiration-counter {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #94A3B8;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .inspiration-icon {
+            opacity: 0.8;
+        }
+
+        .inspiration-count {
+            font-weight: 600;
+            color: #F8FAFC;
+        }
+
+        .same-bet-btn {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .same-bet-btn:hover {
+            background: #7c3aed;
+            transform: scale(1.02);
+        }
+
+        /* Leaderboard */
+        .leaderboard-container {
+            padding: 16px 8px;
+        }
+
+        .my-position-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+            border: 2px solid #8b5cf6;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .my-position-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .my-position-title {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .my-position-badge {
+            background: #8b5cf6;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 4px;
+        }
+
+        .leaderboard-item:hover {
+            background: #334155;
+            transform: translateX(4px);
+        }
+
+        .leaderboard-item.my-position {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+
+        .rank {
+            font-size: 13px;
+            font-weight: 600;
+            width: 20px;
+            color: #64748B;
+        }
+
+        .rank.top-3 {
+            color: #a78bfa;
+        }
+
+        .player-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .player-info {
+            flex: 1;
+        }
+
+        .player-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: #F8FAFC;
+            margin-bottom: 2px;
+        }
+
+        .player-stats {
+            font-size: 11px;
+            color: #64748B;
+        }
+
+        .player-score {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .player-points {
+            font-size: 13px;
+            font-weight: 600;
+            color: #F8FAFC;
+        }
+
+        .win-streak {
+            display: flex;
+            gap: 2px;
+        }
+
+        .win-streak-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .win-streak-dot.win {
+            background: #22C55E;
+        }
+
+        .win-streak-dot.win::after {
+            content: 'W';
+        }
+
+        .win-streak-dot.loss {
+            background: #EF4444;
+        }
+
+        .win-streak-dot.loss::after {
+            content: 'L';
+        }
+
+        /* Competition Cards */
+        .competition-search {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .competition-search-input {
+            width: 100%;
+            background: #1E293B;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 12px 10px 36px;
+            color: #F8FAFC;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .competition-search-input:focus {
+            border-color: #8b5cf6;
+        }
+
+        .competition-search-input::placeholder {
+            color: #64748B;
+        }
+
+        .competition-search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748B;
+        }
+
+        .competition-filters {
+            margin-bottom: 16px;
+        }
+
+        .filter-section {
+            margin-bottom: 12px;
+        }
+
+        .filter-title {
+            font-size: 10px;
+            color: #64748B;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            background: #1E293B;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 11px;
+            color: #94A3B8;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-option input[type="radio"] {
+            display: none;
+        }
+
+        .filter-option.active,
+        .filter-option:has(input:checked) {
+            background: #8b5cf6;
+            color: white;
+            border-color: #8b5cf6;
+        }
+
+        .filter-option:hover:not(.active) {
+            background: #334155;
+        }
+
+        .compact-competition-card {
+            background: #1E293B;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .compact-competition-card:hover {
+            background: #334155;
+            transform: translateY(-1px);
+        }
+
+        .compact-competition-card.active {
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .compact-competition-card.upcoming {
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .compact-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .compact-status {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .compact-status.active {
+            color: #22c55e;
+        }
+
+        .compact-status.upcoming {
+            color: #fbbf24;
+        }
+
+        .compact-sport {
+            font-size: 14px;
+        }
+
+        .compact-competition-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #F8FAFC;
+            margin: 0 0 8px 0;
+        }
+
+        .compact-competition-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .compact-prize {
+            font-size: 12px;
+            font-weight: 600;
+            color: #22c55e;
+        }
+
+        .compact-participants {
+            font-size: 11px;
+            color: #64748B;
+        }
+
+        .compact-competition-time {
+            font-size: 11px;
+            color: #94A3B8;
+        }
+
+        /* Modal Styles */
+        .demo-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            padding: 24px;
+        }
+
+        .demo-modal-overlay.active {
+            display: flex;
+        }
+
+        .demo-modal {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            position: relative;
+            padding: 32px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .demo-modal-sm {
+            width: 400px;
+            text-align: center;
+        }
+
+        .demo-modal-lg {
+            width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .demo-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #1e293b;
+            border: none;
+            color: #94a3b8;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .demo-modal-close:hover {
+            background: #334155;
+            color: #f8fafc;
+        }
+
+        .demo-modal-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .demo-modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+
+        .demo-modal-text {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .demo-modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .demo-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 44px;
+            padding: 0 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .demo-btn-primary {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .demo-btn-primary:hover {
+            background: #7c3aed;
+        }
+
+        .demo-btn-secondary {
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #334155;
+        }
+
+        .demo-btn-secondary:hover {
+            background: #334155;
+        }
+
+        .demo-btn-ghost {
+            background: transparent;
+            color: #94a3b8;
+        }
+
+        .demo-btn-ghost:hover {
+            color: #f8fafc;
+        }
+
+        .demo-btn-lg {
+            height: 48px;
+            width: 100%;
+        }
+
+        .demo-modal-note {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 16px;
+        }
+
+        /* Ticket Modal */
+        .ticket-modal-left,
+        .ticket-modal-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ticket-modal-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .ticket-modal-status {
+            color: #fbbf24;
+        }
+
+        .ticket-modal-heading {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .ticket-modal-heading .accent {
+            color: #8b5cf6;
+        }
+
+        .ticket-selections {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ticket-selection-item {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .selection-time {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .selection-match {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+
+        .selection-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .selection-pick {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        .selection-odds {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .selection-add-btn {
+            width: 24px;
+            height: 24px;
+            background: #8b5cf6;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .ticket-author-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .ticket-author-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .ticket-author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .ticket-author-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin: 0 0 4px 0;
+        }
+
+        .ticket-author-info span {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .ticket-social-proof {
+            font-size: 13px;
+            color: #94a3b8;
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 8px;
+        }
+
+        .ticket-social-proof strong {
+            color: #f8fafc;
+        }
+
+        .ticket-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ticket-stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .stat-label {
+            color: #64748b;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .stat-value.accent {
+            color: #8b5cf6;
+        }
+
+        .stat-value.success {
+            color: #22c55e;
+        }
+
+        .ticket-modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ticket-inspiration-chain {
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .ticket-inspiration-chain a {
+            color: #8b5cf6;
+            text-decoration: none;
+        }
+
+        .ticket-inspiration-chain a:hover {
+            text-decoration: underline;
+        }
+
+        /* Betslip Panel */
+        .betslip-panel {
+            display: none;
+            flex-direction: column;
+            background: var(--op-bg-secondary);
+            border: 1px solid var(--op-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .betslip-panel.active {
+            display: flex;
+        }
+
+        .betslip-tabs {
+            display: flex;
+            gap: 2px;
+            padding: var(--pill-tab-padding);
+            background: var(--pill-tab-bg);
+        }
+
+        .betslip-tab {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--pill-tab-item-height);
+            padding: var(--pill-tab-item-padding);
+            gap: var(--pill-tab-item-gap);
+            font-size: 14px;
+            font-weight: var(--pill-tab-default-weight);
+            color: var(--pill-tab-default-text);
+            background: var(--pill-tab-default-bg);
+            border: none;
+            border-radius: var(--pill-tab-item-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .betslip-tab:hover:not(.active) {
+            background: var(--pill-tab-hover-bg);
+            color: var(--pill-tab-hover-text);
+        }
+
+        .betslip-tab.active {
+            background: var(--pill-tab-active-bg);
+            color: var(--pill-tab-active-text);
+            font-weight: var(--pill-tab-active-weight);
+        }
+
+        .betslip-empty {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--spacing-2xl) 20px;
+            min-height: 300px;
+        }
+
+        .betslip-empty.active {
+            display: flex;
+        }
+
+        .betslip-empty-count {
+            font-size: 48px;
+            font-weight: var(--font-weight-bold);
+            color: var(--op-text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .betslip-empty-text {
+            font-size: 13px;
+            color: var(--op-text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .betslip-empty-subtext {
+            font-size: 15px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .betslip-community-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--op-accent);
+            font-size: 13px;
+            font-weight: var(--font-weight-medium);
+            text-decoration: none;
+            padding: var(--spacing-md) 18px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .betslip-community-cta:hover {
+            background: rgba(139, 92, 246, 0.18);
+            border-color: var(--op-accent);
+        }
+
+        .betslip-community-cta svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .betslip-content {
+            display: none;
+            flex-direction: column;
+            padding: var(--spacing-lg);
+        }
+
+        .betslip-content.active {
+            display: flex;
+        }
+
+        .betslip-selection {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .betslip-selection-badge {
+            background: var(--badge-accent-bg);
+            color: var(--badge-accent-text);
+            width: var(--badge-large-height);
+            height: var(--badge-large-height);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--badge-large-font-size);
+        }
+
+        .betslip-selection-info {
+            flex: 1;
+        }
+
+        .betslip-selection-source {
+            font-size: 12px;
+            color: var(--op-text-tertiary);
+        }
+
+        .betslip-selection-count {
+            font-size: 14px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+        }
+
+        .betslip-stake-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .betslip-stake-input {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 44px;
+            padding: 0 16px;
+            background: var(--input-bg);
+            border-radius: var(--input-border);
+            border: none;
+        }
+
+        .betslip-stake-btn {
+            width: 24px;
+            height: 24px;
+            background: #334155;
+            border: none;
+            border-radius: 4px;
+            color: #cbd5e1;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .betslip-stake-value {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #f8fafc;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: right;
+            outline: none;
+        }
+
+        .betslip-max-btn {
+            height: 44px;
+            padding: 0 20px;
+            background: #1e293b;
+            border: none;
+            border-radius: 8px;
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .betslip-max-btn:hover {
+            background: #334155;
+        }
+
+        .betslip-summary {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .betslip-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            font-size: 13px;
+        }
+
+        .betslip-summary-label {
+            color: var(--op-text-secondary);
+        }
+
+        .betslip-summary-value {
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+        }
+
+        .betslip-summary-value.highlight {
+            color: var(--op-success);
+        }
+
+        .betslip-share-toggle {
+            background: var(--op-bg-tertiary);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .betslip-share-icon {
+            font-size: 16px;
+        }
+
+        .betslip-share-text {
+            flex: 1;
+        }
+
+        .betslip-share-label {
+            font-size: 13px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--op-text-primary);
+        }
+
+        .betslip-share-sublabel {
+            font-size: 11px;
+            color: var(--op-text-tertiary);
+        }
+
+        .betslip-toggle-switch {
+            width: 40px;
+            height: 22px;
+            background: var(--op-bg-primary);
+            border-radius: var(--radius-full);
+            position: relative;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .betslip-toggle-knob {
+            width: 18px;
+            height: 18px;
+            background: var(--op-secondary);
+            border-radius: var(--radius-full);
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: left var(--transition-fast);
+        }
+
+        .betslip-place-btn {
+            width: 100%;
+            height: var(--btn-large-height);
+            background: var(--op-accent);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .betslip-place-btn:hover {
+            background: var(--op-accent-hover);
+        }
+
+        .betslip-accepted {
+            display: none;
+            background: var(--op-success-bg);
+            border: 2px solid var(--op-success);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: var(--font-weight-semibold);
+            font-size: 15px;
+            color: var(--op-success);
+        }
+
+        .betslip-accepted.active {
+            display: flex;
+        }
+
+        .betslip-accepted svg {
+            width: 24px;
+            height: 24px;
+            color: var(--op-success);
+        }
+
+        /* Icon styles */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+        }
+
+        .icon-sm {
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-md {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ========================================
+           ANALYSES PANEL STYLES
+           ======================================== */
+        
+        .analyses-sidebar {
+            flex-direction: column;
+        }
+
+        .analyses-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px 8px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .analysis-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-left: 3px solid #8b5cf6;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analysis-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .analysis-card:hover {
+            border-left-width: 4px;
+            border-color: #334155;
+            border-left-color: #a78bfa;
+            background: linear-gradient(135deg, #1e293b 0%, #1a2332 100%);
+            transform: translateX(4px);
+        }
+
+        .analysis-card:hover::before {
+            opacity: 1;
+        }
+
+        .analysis-badges-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .source-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .source-badge.global {
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+        }
+
+        .translation-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 4px;
+            color: #8b5cf6;
+        }
+
+        .analysis-match-header {
+            margin-bottom: 10px;
+        }
+
+        .analysis-match-header .match-date {
+            display: block;
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .analysis-match-header .match-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .analysis-prediction-big {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .prediction-pick {
+            flex: 1;
+        }
+
+        .pick-label {
+            display: block;
+            font-size: 9px;
+            color: #8b5cf6;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .pick-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .prediction-odds-big .odds-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        .analysis-stakes-prominent {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px;
+            background: #0f172a;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .stake-box, .win-box {
+            text-align: center;
+        }
+
+        .stake-label, .win-label {
+            display: block;
+            font-size: 9px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .stake-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .win-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        .analysis-stakes-prominent .arrow-icon {
+            color: #475569;
+        }
+
+        .analysis-quick-stats {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .quick-stat {
+            flex: 1;
+            text-align: center;
+            padding: 6px 4px;
+            background: #1e293b;
+            border-radius: 4px;
+        }
+
+        .quick-stat .stat-label {
+            display: block;
+            font-size: 9px;
+            color: #64748b;
+            margin-bottom: 2px;
+        }
+
+        .quick-stat .stat-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .quick-stat .stat-value.positive {
+            color: #22c55e;
+        }
+
+        .quick-stat .stat-value.positive.high {
+            color: #4ade80;
+        }
+
+        .analysis-cta-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .analysis-cta-btn:hover {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            transform: translateY(-1px);
+        }
+
+        /* Analysis Detail Modal */
+        .analysis-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .analysis-modal-overlay.active {
+            display: flex;
+        }
+
+        .analysis-modal {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .analysis-modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .analysis-modal-close {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .analysis-modal-close:hover {
+            color: #f8fafc;
+        }
+
+        .analysis-modal-body {
+            padding: 20px;
+        }
+
+        .analysis-modal-match {
+            margin-bottom: 20px;
+        }
+
+        .analysis-modal-match .match-date {
+            font-size: 12px;
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .analysis-modal-match .match-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin: 4px 0;
+        }
+
+        .analysis-modal-match .match-league {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .analysis-modal-prediction {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .analysis-modal-prediction .pick-label {
+            font-size: 11px;
+            color: #8b5cf6;
+            margin-bottom: 4px;
+        }
+
+        .analysis-modal-prediction .pick-value {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .analysis-modal-prediction .odds-badge {
+            display: inline-block;
+            background: #22c55e;
+            color: #0f172a;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .analysis-modal-content {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .analysis-modal-content h4 {
+            color: #8b5cf6;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .analysis-modal-content p {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .analysis-modal-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .analysis-modal-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: #1e293b;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .analysis-modal-author .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .analysis-modal-author .author-info {
+            flex: 1;
+        }
+
+        .analysis-modal-author .author-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .analysis-modal-author .author-stats {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .analysis-modal-author .author-stats span {
+            color: #22c55e;
+        }
+
+        .analysis-modal-cta {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .analysis-modal-cta:hover {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+        }
+
+        /* Team logo images */
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Icon Sprite -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <defs>
+        <symbol id="icon-user" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </symbol>
+        <symbol id="icon-trophy" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/>
+        </symbol>
+        <symbol id="icon-money" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+        </symbol>
+        <symbol id="icon-target" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </symbol>
+        <symbol id="icon-dice" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 18c-.83 0-1.5-.67-1.5-1.5S6.67 15 7.5 15s1.5.67 1.5 1.5S8.33 18 7.5 18zm0-9C6.67 9 6 8.33 6 7.5S6.67 6 7.5 6 9 6.67 9 7.5 8.33 9 7.5 9zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-9c-.83 0-1.5-.67-1.5-1.5S15.67 6 16.5 6s1.5.67 1.5 1.5S17.33 9 16.5 9z"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <!-- Header - Primary Navigation -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <div class="logo-icon">🎮</div>
+                Arena<span>Max</span>
+            </div>
+            <nav class="nav">
+                <div class="nav-item active">Esports</div>
+                <div class="nav-item">Casino</div>
+                <div class="nav-item">Fantasy</div>
+                <div class="nav-item">Rewards</div>
+            </nav>
+        </div>
+        <div class="header-right">
+            <button class="btn-login">Log In</button>
+            <button class="btn-register">Register</button>
+        </div>
+    </header>
+    
+    <!-- Secondary Navigation -->
+    <nav class="secondary-nav">
+        <div class="secondary-nav-items">
+            <div class="secondary-nav-item active">All Games</div>
+            <div class="secondary-nav-item">League of Legends</div>
+            <div class="secondary-nav-item">Counter-Strike</div>
+            <div class="secondary-nav-item">Dota 2</div>
+            <div class="secondary-nav-item">Live</div>
+            <div class="secondary-nav-item community">Community</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Left Sidebar - Games Navigation -->
+        <aside class="games-sidebar">
+            <!-- Action Buttons -->
+            <div class="sidebar-actions">
+                <button class="sidebar-action-btn active" title="Home">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M2 6L8 1.5L14 6V13.5C14 13.7652 13.8946 14.0196 13.7071 14.2071C13.5196 14.3946 13.2652 14.5 13 14.5H3C2.73478 14.5 2.48043 14.3946 2.29289 14.2071C2.10536 14.0196 2 13.7652 2 13.5V6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="sidebar-action-btn" title="Search">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 14L11.1 11.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="sidebar-action-btn" title="My Bets">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M13.3333 2H2.66667C1.93029 2 1.33333 2.59695 1.33333 3.33333V12.6667C1.33333 13.403 1.93029 14 2.66667 14H13.3333C14.0697 14 14.6667 13.403 14.6667 12.6667V3.33333C14.6667 2.59695 14.0697 2 13.3333 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 6H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <button class="sidebar-action-btn" title="Favorites">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1.5L9.854 5.26L14 5.87L11 8.79L11.708 13L8 11.01L4.292 13L5 8.79L2 5.87L6.146 5.26L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Popular Tournaments Section -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">POPULAR</div>
+                <div class="sidebar-list">
+                    <div class="popular-tournament">
+                        <div class="popular-tournament-info">
+                            <span class="popular-tournament-icon">🏆</span>
+                            <div class="popular-tournament-details">
+                                <span class="popular-tournament-name">LEC Spring Split</span>
+                                <span class="popular-tournament-game">League of Legends</span>
+                            </div>
+                        </div>
+                        <svg class="popular-tournament-arrow" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="popular-tournament">
+                        <div class="popular-tournament-info">
+                            <span class="popular-tournament-icon">⚡</span>
+                            <div class="popular-tournament-details">
+                                <span class="popular-tournament-name">BLAST Premier</span>
+                                <span class="popular-tournament-game">Counter-Strike 2</span>
+                            </div>
+                        </div>
+                        <svg class="popular-tournament-arrow" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="popular-tournament">
+                        <div class="popular-tournament-info">
+                            <span class="popular-tournament-icon">🌍</span>
+                            <div class="popular-tournament-details">
+                                <span class="popular-tournament-name">The International</span>
+                                <span class="popular-tournament-game">Dota 2</span>
+                            </div>
+                        </div>
+                        <svg class="popular-tournament-arrow" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Community Section -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">COMMUNITY</div>
+                <div class="sidebar-list">
+                    <div class="popular-tournament" id="nav-feed">
+                        <div class="popular-tournament-info">
+                            <span class="popular-tournament-icon">📰</span>
+                            <div class="popular-tournament-details">
+                                <span class="popular-tournament-name">Feed</span>
+                            </div>
+                        </div>
+                        <svg class="popular-tournament-arrow" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="popular-tournament" id="nav-competitions">
+                        <div class="popular-tournament-info">
+                            <span class="popular-tournament-icon">⭐</span>
+                            <div class="popular-tournament-details">
+                                <span class="popular-tournament-name">Competitions</span>
+                            </div>
+                        </div>
+                        <svg class="popular-tournament-arrow" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="popular-tournament" id="nav-analyses">
+                        <div class="popular-tournament-info">
+                            <span class="popular-tournament-icon">📊</span>
+                            <div class="popular-tournament-details">
+                                <span class="popular-tournament-name">Analyses</span>
+                            </div>
+                        </div>
+                        <svg class="popular-tournament-arrow" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- All Games Section -->
+            <div class="sidebar-section" style="flex: 1; min-height: 0;">
+                <div class="sidebar-title">ALL GAMES</div>
+                <div class="sidebar-list" style="flex: 1; overflow-y: auto;">
+                    <!-- League of Legends (Expanded) -->
+                    <div class="game-row expanded">
+                        <div class="game-row-header">
+                            <span class="game-row-icon">🎮</span>
+                            <span class="game-row-name">League of Legends</span>
+                            <svg class="game-row-arrow" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="game-row-content">
+                            <div class="region-row expanded">
+                                <div class="region-row-header">
+                                    <span class="region-row-flag">🇪🇺</span>
+                                    <span class="region-row-name">Europe (LEC)</span>
+                                    <svg class="region-row-arrow" viewBox="0 0 16 16" fill="none">
+                                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="region-row-content">
+                                    <div class="nested-tournament"><span class="nested-tournament-name">LEC Spring Split</span></div>
+                                    <div class="nested-tournament active"><span class="nested-tournament-name">LEC Winter Cup</span></div>
+                                </div>
+                            </div>
+                            <div class="region-row">
+                                <div class="region-row-header">
+                                    <span class="region-row-flag">🇺🇸</span>
+                                    <span class="region-row-name">North America (LCS)</span>
+                                    <svg class="region-row-arrow" viewBox="0 0 16 16" fill="none">
+                                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="region-row">
+                                <div class="region-row-header">
+                                    <span class="region-row-flag">🇰🇷</span>
+                                    <span class="region-row-name">Korea (LCK)</span>
+                                    <svg class="region-row-arrow" viewBox="0 0 16 16" fill="none">
+                                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="region-row">
+                                <div class="region-row-header">
+                                    <span class="region-row-flag">🇨🇳</span>
+                                    <span class="region-row-name">China (LPL)</span>
+                                    <svg class="region-row-arrow" viewBox="0 0 16 16" fill="none">
+                                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="region-row">
+                                <div class="region-row-header">
+                                    <span class="region-row-flag">🌍</span>
+                                    <span class="region-row-name">International</span>
+                                    <svg class="region-row-arrow" viewBox="0 0 16 16" fill="none">
+                                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Counter-Strike 2 -->
+                    <div class="game-row">
+                        <div class="game-row-header">
+                            <span class="game-row-icon">🔫</span>
+                            <span class="game-row-name">Counter-Strike 2</span>
+                            <svg class="game-row-arrow" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Dota 2 -->
+                    <div class="game-row">
+                        <div class="game-row-header">
+                            <span class="game-row-icon">⚔️</span>
+                            <span class="game-row-name">Dota 2</span>
+                            <svg class="game-row-arrow" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Valorant -->
+                    <div class="game-row">
+                        <div class="game-row-header">
+                            <span class="game-row-icon">💥</span>
+                            <span class="game-row-name">Valorant</span>
+                            <svg class="game-row-arrow" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Overwatch 2 -->
+                    <div class="game-row">
+                        <div class="game-row-header">
+                            <span class="game-row-icon">🦸</span>
+                            <span class="game-row-name">Overwatch 2</span>
+                            <svg class="game-row-arrow" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Rocket League -->
+                    <div class="game-row">
+                        <div class="game-row-header">
+                            <span class="game-row-icon">🚗</span>
+                            <span class="game-row-name">Rocket League</span>
+                            <svg class="game-row-arrow" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Community Feed Panel -->
+        <aside class="left-sidebar" id="feed-panel" style="display: none;">
+            <div class="feed-tabs-container">
+                <div class="back-nav-button" onclick="showGamesSidebar()">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Community</span>
+                </div>
+                
+                <div class="sidebar-tabs">
+                    <button class="tab-button active" data-feed-tab="live-bets" onclick="switchFeedTab('live-bets')">
+                        <span class="live-indicator"></span>
+                        Live Bets
+                    </button>
+                    <button class="tab-button" data-feed-tab="big-wins" onclick="switchFeedTab('big-wins')">
+                        💰 Big Wins
+                    </button>
+                    <button class="tab-button" data-feed-tab="leaderboard" onclick="switchFeedTab('leaderboard')">
+                        Leaderboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feed Content - Live Bets -->
+            <div id="feed-tab-live-bets" class="feed-tab-content bet-cards-container">
+                <!-- Bet Card 1 - G2 Esports Match -->
+                <div class="bet-card">
+                    <div class="bet-card-header">
+                        <div class="bettor-info">
+                            <div class="bettor-avatar identified">👤</div>
+                            <span class="bettor-name identified">EsportsKing99</span>
+                        </div>
+                        <div class="win-rate">Win Rate: 62%</div>
+                    </div>
+                    <div class="match-info">
+                        <div class="match-title">
+                            <span>G2 Esports vs Fnatic</span>
+                        </div>
+                        <div class="match-league">LEC Spring Split • Bo3</div>
+                    </div>
+                    <div class="bet-details">
+                        <div class="bet-info">
+                            <div class="bet-type">G2 Esports to Win</div>
+                            <div class="bet-stakes-row">
+                                <span class="stake-info">Stake: $450</span>
+                                <span class="win-info">Win: $765</span>
+                            </div>
+                        </div>
+                        <div class="bet-odds-container">
+                            <div class="bet-odds">1.70</div>
+                        </div>
+                    </div>
+                    <div class="bet-card-footer">
+                        <div class="inspiration-counter">
+                            <span class="inspiration-icon">🔥</span>
+                            <span class="inspiration-count">38</span>
+                            <span>inspired</span>
+                        </div>
+                        <button class="same-bet-btn">Copy Bet</button>
+                    </div>
+                </div>
+
+                <!-- Bet Card 2 - CS2 Match -->
+                <div class="bet-card">
+                    <div class="bet-card-header">
+                        <div class="bettor-info">
+                            <div class="bettor-avatar anonymous">👻</div>
+                            <span class="bettor-name">CSGOProphet</span>
+                        </div>
+                        <div class="win-rate">Win Rate: 58%</div>
+                    </div>
+                    <div class="match-info">
+                        <div class="match-title">
+                            <span>NaVi vs FaZe Clan</span>
+                        </div>
+                        <div class="match-league">BLAST Premier • Bo3</div>
+                    </div>
+                    <div class="bet-details">
+                        <div class="bet-info">
+                            <div class="bet-type">Over 2.5 Maps</div>
+                            <div class="bet-stakes-row">
+                                <span class="stake-info">Stake: $200</span>
+                                <span class="win-info">Win: $380</span>
+                            </div>
+                        </div>
+                        <div class="bet-odds-container">
+                            <div class="bet-odds">1.90</div>
+                        </div>
+                    </div>
+                    <div class="bet-card-footer">
+                        <div class="inspiration-counter">
+                            <span class="inspiration-icon">🔥</span>
+                            <span class="inspiration-count">15</span>
+                            <span>inspired</span>
+                        </div>
+                        <button class="same-bet-btn">Copy Bet</button>
+                    </div>
+                </div>
+
+                <!-- Bet Card 3 - Trending -->
+                <div class="bet-card trending">
+                    <div class="bet-card-header">
+                        <div class="bettor-info">
+                            <div class="bettor-avatar identified">👤</div>
+                            <span class="bettor-name identified">DotaMaster</span>
+                        </div>
+                        <div class="win-rate">Win Rate: 71%</div>
+                    </div>
+                    <div class="match-info">
+                        <div class="match-title">
+                            <span>Team Liquid vs OG</span>
+                        </div>
+                        <div class="match-league">The International • Bo5</div>
+                    </div>
+                    <div class="bet-details">
+                        <div class="bet-info">
+                            <div class="bet-type">Team Liquid -1.5 Maps</div>
+                            <div class="bet-stakes-row">
+                                <span class="stake-info">Stake: $600</span>
+                                <span class="win-info">Win: $1,380</span>
+                            </div>
+                        </div>
+                        <div class="bet-odds-container">
+                            <div class="bet-odds">2.30</div>
+                        </div>
+                    </div>
+                    <div class="bet-card-footer">
+                        <div class="inspiration-counter">
+                            <span class="inspiration-icon">🔥</span>
+                            <span class="inspiration-count">142</span>
+                            <span>inspired</span>
+                        </div>
+                        <button class="same-bet-btn">Copy Bet</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Big Wins Tab -->
+            <div id="feed-tab-big-wins" class="feed-tab-content bet-cards-container" style="display: none;">
+                <div class="bet-card won-bet">
+                    <div class="bet-card-header">
+                        <div class="bettor-info">
+                            <div class="bettor-avatar identified">👤</div>
+                            <span class="bettor-name identified">ProGamer777</span>
+                        </div>
+                        <div class="win-rate text-green">✅ WON</div>
+                    </div>
+                    <div class="match-info">
+                        <div class="match-title">
+                            <span>G2 Esports vs T1</span>
+                        </div>
+                        <div class="match-league">Worlds Finals • Final: 3-1</div>
+                    </div>
+                    <div class="bet-details">
+                        <div class="bet-info">
+                            <div class="bet-type">G2 Esports to Win</div>
+                            <div class="bet-stakes-row">
+                                <span class="stake-info">Stake: $1,200</span>
+                                <span class="win-info text-green">Won: $4,320</span>
+                            </div>
+                        </div>
+                        <div class="bet-odds-container">
+                            <div class="bet-odds">3.60</div>
+                        </div>
+                    </div>
+                    <div class="bet-card-footer">
+                        <div class="inspiration-counter text-green">
+                            💰 <span class="inspiration-count">+$3,120</span> profit
+                        </div>
+                        <button class="same-bet-btn">🔍 Same Play</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Tab -->
+            <div id="feed-tab-leaderboard" class="feed-tab-content leaderboard-container" style="display: none;">
+                <div class="my-position-card">
+                    <div class="my-position-header">
+                        <span class="my-position-title">MY POSITION</span>
+                        <span class="my-position-badge">RANK #5</span>
+                    </div>
+                    <div class="leaderboard-item my-position">
+                        <div class="rank">5.</div>
+                        <div class="player-avatar">🎮</div>
+                        <div class="player-info">
+                            <div class="player-name">PlayerAce312</div>
+                            <div class="player-stats">+14.6%</div>
+                        </div>
+                        <div class="player-score">
+                            <div class="player-points">3524 pts</div>
+                            <div class="win-streak">
+                                <div class="win-streak-dot win"></div>
+                                <div class="win-streak-dot win"></div>
+                                <div class="win-streak-dot loss"></div>
+                                <div class="win-streak-dot loss"></div>
+                                <div class="win-streak-dot win"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank top-3">1.</div>
+                    <div class="player-avatar">🏆</div>
+                    <div class="player-info">
+                        <div class="player-name">G2_Superfan</div>
+                        <div class="player-stats">+22.4%</div>
+                    </div>
+                    <div class="player-score">
+                        <div class="player-points">5,120 pts</div>
+                        <div class="win-streak">
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank top-3">2.</div>
+                    <div class="player-avatar">⚡</div>
+                    <div class="player-info">
+                        <div class="player-name">CSGOLegend</div>
+                        <div class="player-stats">+19.5%</div>
+                    </div>
+                    <div class="player-score">
+                        <div class="player-points">4,890 pts</div>
+                        <div class="win-streak">
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot loss"></div>
+                            <div class="win-streak-dot win"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank top-3">3.</div>
+                    <div class="player-avatar">🎯</div>
+                    <div class="player-info">
+                        <div class="player-name">DotaPro99</div>
+                        <div class="player-stats">+17.8%</div>
+                    </div>
+                    <div class="player-score">
+                        <div class="player-points">4,350 pts</div>
+                        <div class="win-streak">
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot win"></div>
+                            <div class="win-streak-dot loss"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Competitions Panel -->
+        <aside class="left-sidebar" id="competitions-panel" style="display: none;">
+            <div class="feed-tabs-container">
+                <div class="back-nav-button" onclick="showGamesSidebar()">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Community</span>
+                </div>
+                
+                <div class="sidebar-tabs">
+                    <button class="tab-button active" data-comp-tab="browse" onclick="switchCompetitionsTab('browse')">Browse</button>
+                    <button class="tab-button" data-comp-tab="my-entries" onclick="switchCompetitionsTab('my-entries')">My Entries</button>
+                    <button class="tab-button" data-comp-tab="results" onclick="switchCompetitionsTab('results')">Results</button>
+                </div>
+            </div>
+
+            <div id="comp-tab-browse" class="comp-tab-content" style="padding: 16px 8px;">
+                <div class="competition-search">
+                    <svg class="competition-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" class="competition-search-input" placeholder="Search competitions...">
+                </div>
+
+                <div class="competition-filters">
+                    <div class="filter-section">
+                        <div class="filter-title">STATUS</div>
+                        <div class="filter-options">
+                            <label class="filter-option active">
+                                <input type="radio" name="status-filter" value="active" checked>
+                                <span>Active (3)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="status-filter" value="upcoming">
+                                <span>Upcoming (5)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competition-compact-list">
+                    <div class="compact-competition-card active">
+                        <div class="compact-card-header">
+                            <span class="compact-status active">● ACTIVE</span>
+                            <span class="compact-sport">🎮</span>
+                        </div>
+                        <h4 class="compact-competition-name">LEC Spring Predictions</h4>
+                        <div class="compact-competition-meta">
+                            <span class="compact-prize">€10,000</span>
+                            <span class="compact-participants">4,521 entries</span>
+                        </div>
+                        <div class="compact-competition-time">⏰ Ends in 5 days</div>
+                    </div>
+
+                    <div class="compact-competition-card active">
+                        <div class="compact-card-header">
+                            <span class="compact-status active">● ACTIVE</span>
+                            <span class="compact-sport">🔫</span>
+                        </div>
+                        <h4 class="compact-competition-name">BLAST Premier Challenge</h4>
+                        <div class="compact-competition-meta">
+                            <span class="compact-prize">$5,000</span>
+                            <span class="compact-participants">2,845 entries</span>
+                        </div>
+                        <div class="compact-competition-time">⏰ Ends in 3 days</div>
+                    </div>
+
+                    <div class="compact-competition-card upcoming">
+                        <div class="compact-card-header">
+                            <span class="compact-status upcoming">📅 UPCOMING</span>
+                            <span class="compact-sport">⚔️</span>
+                        </div>
+                        <h4 class="compact-competition-name">The International Predictor</h4>
+                        <div class="compact-competition-meta">
+                            <span class="compact-prize">$25,000</span>
+                            <span class="compact-participants">0 entries</span>
+                        </div>
+                        <div class="compact-competition-time">📅 Starts Feb 15</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comp-tab-my-entries" class="comp-tab-content" style="display: none; padding: 16px 8px;">
+                <p style="color: #64748b; text-align: center; padding: 40px 20px;">No active entries. Join a competition to get started!</p>
+            </div>
+
+            <div id="comp-tab-results" class="comp-tab-content" style="display: none; padding: 16px 8px;">
+                <p style="color: #64748b; text-align: center; padding: 40px 20px;">No recent results. Check back after competitions end.</p>
+            </div>
+        </aside>
+
+        <!-- Analyses Panel -->
+        <aside class="left-sidebar analyses-sidebar" id="analyses-panel" style="display: none;">
+            <div class="feed-tabs-container">
+                <div class="back-nav-button" onclick="showGamesSidebar()">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Community</span>
+                </div>
+            </div>
+            
+            <!-- Analyses Grid -->
+            <div class="analyses-grid">
+                
+                <!-- Analysis Card 1: G2 vs Fnatic -->
+                <article class="analysis-card" data-analysis-id="1" onclick="openAnalysisDetail(1)">
+                    <div class="analysis-badges-row">
+                        <div class="source-badge global">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span>Global</span>
+                        </div>
+                        <div class="translation-badge">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2v3M22 22l-5-10-5 10M14 18h6"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-match-header">
+                        <span class="match-date">TODAY 18:00</span>
+                        <span class="match-title">G2 Esports vs Fnatic</span>
+                    </div>
+                    
+                    <div class="analysis-prediction-big">
+                        <div class="prediction-pick">
+                            <span class="pick-label">PICK</span>
+                            <span class="pick-value">G2 to Win + Over 2.5 Maps</span>
+                        </div>
+                        <div class="prediction-odds-big">
+                            <span class="odds-value">2.85</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-stakes-prominent">
+                        <div class="stake-box">
+                            <span class="stake-label">Stake</span>
+                            <span class="stake-value">$300</span>
+                        </div>
+                        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="win-box">
+                            <span class="win-label">To Win</span>
+                            <span class="win-value">$855</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-quick-stats">
+                        <div class="quick-stat">
+                            <span class="stat-label">Confidence</span>
+                            <span class="stat-value">8/10</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-label">ROI</span>
+                            <span class="stat-value positive">+12.4%</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-label">Record</span>
+                            <span class="stat-value">67-31</span>
+                        </div>
+                    </div>
+                    
+                    <button class="analysis-cta-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 3V13M13 8H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>View Full Analysis</span>
+                    </button>
+                </article>
+
+                <!-- Analysis Card 2: NaVi vs FaZe -->
+                <article class="analysis-card" data-analysis-id="2" onclick="openAnalysisDetail(2)">
+                    <div class="analysis-badges-row">
+                        <div class="source-badge global">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span>Global</span>
+                        </div>
+                        <div class="translation-badge">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2v3M22 22l-5-10-5 10M14 18h6"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-match-header">
+                        <span class="match-date">TODAY 20:00</span>
+                        <span class="match-title">NaVi vs FaZe Clan</span>
+                    </div>
+                    
+                    <div class="analysis-prediction-big">
+                        <div class="prediction-pick">
+                            <span class="pick-label">PICK</span>
+                            <span class="pick-value">NaVi ML + s1mple Over 1.5 Rating</span>
+                        </div>
+                        <div class="prediction-odds-big">
+                            <span class="odds-value">2.40</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-stakes-prominent">
+                        <div class="stake-box">
+                            <span class="stake-label">Stake</span>
+                            <span class="stake-value">$250</span>
+                        </div>
+                        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="win-box">
+                            <span class="win-label">To Win</span>
+                            <span class="win-value">$600</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-quick-stats">
+                        <div class="quick-stat">
+                            <span class="stat-label">Confidence</span>
+                            <span class="stat-value">7/10</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-label">ROI</span>
+                            <span class="stat-value positive high">+18.2%</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-label">Record</span>
+                            <span class="stat-value">52-24</span>
+                        </div>
+                    </div>
+                    
+                    <button class="analysis-cta-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 3V13M13 8H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>View Full Analysis</span>
+                    </button>
+                </article>
+
+                <!-- Analysis Card 3: T1 vs Gen.G -->
+                <article class="analysis-card" data-analysis-id="3" onclick="openAnalysisDetail(3)">
+                    <div class="analysis-badges-row">
+                        <div class="source-badge global">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span>Global</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-match-header">
+                        <span class="match-date">TOMORROW 14:00</span>
+                        <span class="match-title">T1 vs Gen.G</span>
+                    </div>
+                    
+                    <div class="analysis-prediction-big">
+                        <div class="prediction-pick">
+                            <span class="pick-label">PICK</span>
+                            <span class="pick-value">T1 -1.5 Maps</span>
+                        </div>
+                        <div class="prediction-odds-big">
+                            <span class="odds-value">2.15</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-stakes-prominent">
+                        <div class="stake-box">
+                            <span class="stake-label">Stake</span>
+                            <span class="stake-value">$400</span>
+                        </div>
+                        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="win-box">
+                            <span class="win-label">To Win</span>
+                            <span class="win-value">$860</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-quick-stats">
+                        <div class="quick-stat">
+                            <span class="stat-label">Confidence</span>
+                            <span class="stat-value">6/10</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-label">ROI</span>
+                            <span class="stat-value positive">+9.1%</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-label">Record</span>
+                            <span class="stat-value">89-56</span>
+                        </div>
+                    </div>
+                    
+                    <button class="analysis-cta-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 3V13M13 8H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>View Full Analysis</span>
+                    </button>
+                </article>
+
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Featured Matches -->
+            <section class="featured-section">
+                <div class="section-header">
+                    <h2 class="section-title">🔥 Featured Matches</h2>
+                    <span class="view-all">View All →</span>
+                </div>
+                <div class="featured-cards">
+                    <!-- G2 vs Fnatic - LIVE -->
+                    <div class="featured-card">
+                        <div class="card-tournament">
+                            <span class="card-tournament-badge">LIVE</span>
+                            <span>LEC Spring Split</span>
+                            <span class="card-time">Game 2 • 24:35</span>
+                        </div>
+                        <div class="card-teams">
+                            <div class="team-row">
+                                <div class="team-logo" style="background: linear-gradient(135deg, #1e1e1e, #4a4a4a);">G2</div>
+                                <span class="team-name">G2 Esports</span>
+                                <span class="team-score">1</span>
+                            </div>
+                            <div class="team-row">
+                                <div class="team-logo" style="background: linear-gradient(135deg, #f86200, #c94f00);">FNC</div>
+                                <span class="team-name">Fnatic</span>
+                                <span class="team-score">0</span>
+                            </div>
+                        </div>
+                        <div class="card-odds">
+                            <div class="odd-btn">
+                                <div class="odd-label">G2</div>
+                                <div class="odd-value">1.35</div>
+                            </div>
+                            <div class="odd-btn">
+                                <div class="odd-label">FNC</div>
+                                <div class="odd-value">3.10</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NaVi vs FaZe -->
+                    <div class="featured-card">
+                        <div class="card-tournament">
+                            <span>BLAST Premier</span>
+                            <span class="card-time">Today, 20:00</span>
+                        </div>
+                        <div class="card-teams">
+                            <div class="team-row">
+                                <div class="team-logo" style="background: linear-gradient(135deg, #f8c41c, #d4a70c);">Na</div>
+                                <span class="team-name">NaVi</span>
+                            </div>
+                            <div class="team-row">
+                                <div class="team-logo" style="background: linear-gradient(135deg, #ee1c25, #c41018);">FZ</div>
+                                <span class="team-name">FaZe Clan</span>
+                            </div>
+                        </div>
+                        <div class="card-odds">
+                            <div class="odd-btn">
+                                <div class="odd-label">NaVi</div>
+                                <div class="odd-value">1.85</div>
+                            </div>
+                            <div class="odd-btn">
+                                <div class="odd-label">FaZe</div>
+                                <div class="odd-value">1.95</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Liquid vs OG -->
+                    <div class="featured-card">
+                        <div class="card-tournament">
+                            <span>The International</span>
+                            <span class="card-time">Tomorrow, 18:00</span>
+                        </div>
+                        <div class="card-teams">
+                            <div class="team-row">
+                                <div class="team-logo" style="background: linear-gradient(135deg, #0a2744, #1a4a7a);">TL</div>
+                                <span class="team-name">Team Liquid</span>
+                            </div>
+                            <div class="team-row">
+                                <div class="team-logo" style="background: linear-gradient(135deg, #303030, #505050);">OG</div>
+                                <span class="team-name">OG</span>
+                            </div>
+                        </div>
+                        <div class="card-odds">
+                            <div class="odd-btn">
+                                <div class="odd-label">Liquid</div>
+                                <div class="odd-value">2.10</div>
+                            </div>
+                            <div class="odd-btn">
+                                <div class="odd-label">OG</div>
+                                <div class="odd-value">1.75</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Table -->
+            <section class="events-section">
+                <div class="events-header">
+                    <h3 class="events-title">🎮 League of Legends</h3>
+                    <div class="events-tabs">
+                        <div class="events-tab active">All</div>
+                        <div class="events-tab">Live</div>
+                        <div class="events-tab">Today</div>
+                        <div class="events-tab">Tomorrow</div>
+                    </div>
+                </div>
+                <div class="events-table">
+                    <div class="event-row">
+                        <div class="event-info">
+                            <span class="event-time">Today, 18:00 • LEC Spring Split</span>
+                            <span class="event-teams">
+                                G2 Esports vs Fnatic
+                                <span class="event-format">Bo3</span>
+                            </span>
+                        </div>
+                        <div class="event-odd">1.70</div>
+                        <div class="event-odd">2.15</div>
+                        <div class="event-more">+24</div>
+                    </div>
+                    <div class="event-row">
+                        <div class="event-info">
+                            <span class="event-time">Today, 20:00 • LEC Spring Split</span>
+                            <span class="event-teams">
+                                T1 vs DRX
+                                <span class="event-format">Bo3</span>
+                            </span>
+                        </div>
+                        <div class="event-odd">1.45</div>
+                        <div class="event-odd">2.75</div>
+                        <div class="event-more">+24</div>
+                    </div>
+                    <div class="event-row">
+                        <div class="event-info">
+                            <span class="event-time">Today, 22:00 • LCS Spring Split</span>
+                            <span class="event-teams">
+                                Cloud9 vs Team Liquid
+                                <span class="event-format">Bo3</span>
+                            </span>
+                        </div>
+                        <div class="event-odd">2.05</div>
+                        <div class="event-odd">1.78</div>
+                        <div class="event-more">+24</div>
+                    </div>
+                    <div class="event-row">
+                        <div class="event-info">
+                            <span class="event-time">Tomorrow, 14:00 • LPL Spring Split</span>
+                            <span class="event-teams">
+                                JD Gaming vs Top Esports
+                                <span class="event-format">Bo3</span>
+                            </span>
+                        </div>
+                        <div class="event-odd">1.90</div>
+                        <div class="event-odd">1.90</div>
+                        <div class="event-more">+24</div>
+                    </div>
+                    <div class="event-row">
+                        <div class="event-info">
+                            <span class="event-time">Tomorrow, 16:00 • LCK Spring Split</span>
+                            <span class="event-teams">
+                                Gen.G vs Hanwha Life
+                                <span class="event-format">Bo3</span>
+                            </span>
+                        </div>
+                        <div class="event-odd">1.30</div>
+                        <div class="event-odd">3.50</div>
+                        <div class="event-more">+24</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar - Community Widget -->
+        <aside class="community-sidebar">
+            <!-- Betslip Panel -->
+            <div class="betslip-panel" id="betslipPanel">
+                <div class="betslip-tabs">
+                    <button class="betslip-tab active">Betslip</button>
+                    <button class="betslip-tab">My Bets</button>
+                </div>
+
+                <div class="betslip-empty" id="betslipEmpty">
+                    <div class="betslip-empty-count">0</div>
+                    <div class="betslip-empty-text">Add selections to place a bet.</div>
+                    <div class="betslip-empty-subtext">Your Betslip is Empty</div>
+                    <a href="#" class="betslip-community-cta" onclick="showCommunityWidget(); return false;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        Browse Community for inspiration
+                    </a>
+                </div>
+
+                <div class="betslip-content" id="betslipWithBets">
+                    <div class="betslip-selection">
+                        <div class="betslip-selection-badge">4</div>
+                        <div class="betslip-selection-info">
+                            <div class="betslip-selection-source">Parlay from G2_Superfan</div>
+                            <div class="betslip-selection-count">4 selections</div>
+                        </div>
+                    </div>
+
+                    <div class="betslip-stake-row">
+                        <div class="betslip-stake-input">
+                            <button class="betslip-stake-btn">−</button>
+                            <input type="text" class="betslip-stake-value" value="$50">
+                            <button class="betslip-stake-btn">+</button>
+                        </div>
+                        <button class="betslip-max-btn">MAX</button>
+                    </div>
+
+                    <div class="betslip-summary">
+                        <div class="betslip-summary-row">
+                            <span class="betslip-summary-label">Bet Amount</span>
+                            <span class="betslip-summary-value">$50</span>
+                        </div>
+                        <div class="betslip-summary-row">
+                            <span class="betslip-summary-label">Total Odds</span>
+                            <span class="betslip-summary-value">5.85</span>
+                        </div>
+                        <div class="betslip-summary-row">
+                            <span class="betslip-summary-label" style="color: var(--op-success);">Potential Winnings</span>
+                            <span class="betslip-summary-value highlight">$292.50</span>
+                        </div>
+                    </div>
+
+                    <div class="betslip-share-toggle">
+                        <div class="betslip-share-icon">🔗</div>
+                        <div class="betslip-share-text">
+                            <div class="betslip-share-label">Share with Community</div>
+                            <div class="betslip-share-sublabel">Link this bet to your profile</div>
+                        </div>
+                        <div class="betslip-toggle-switch">
+                            <div class="betslip-toggle-knob"></div>
+                        </div>
+                    </div>
+
+                    <button class="betslip-place-btn" id="placeBetBtn">Place Bet</button>
+
+                    <div class="betslip-accepted" id="betslipAccepted">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M20 6L9 17L4 12"/>
+                        </svg>
+                        <span>Bet Placed Successfully</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Widget -->
+            <div class="community-widget" id="communityWidget">
+                <div class="widget-header">
+                    <div class="widget-icon">🔥</div>
+                    <div class="widget-title-group">
+                        <div class="widget-title">Get Inspired</div>
+                        <div class="widget-subtitle">See what others are betting</div>
+                    </div>
+                    <div class="widget-badge">NEW</div>
+                </div>
+
+                <div class="widget-content" id="widgetContent">
+                    <!-- Ticket Preview 1 - G2 Fan -->
+                    <div class="ticket-preview" onclick="openSignInModal()">
+                        <div class="ticket-header">
+                            <div class="ticket-avatar">G2</div>
+                            <div class="ticket-user-info">
+                                <div class="ticket-username">G2_Superfan</div>
+                                <div class="ticket-stats">45 inspirations</div>
+                            </div>
+                            <div class="ticket-status active">ACTIVE</div>
+                        </div>
+                        <div class="ticket-bet">G2 Esports to Win + Over 2.5 Maps</div>
+                        <div class="ticket-footer">
+                            <div class="ticket-footer-top">
+                                <div class="ticket-odds">Odds: <span>2.85</span></div>
+                                <div class="ticket-inspired">
+                                    <span>👥</span>
+                                    <span>67 inspired</span>
+                                </div>
+                            </div>
+                            <button class="ticket-copy-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                View Signal
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ticket Preview 2 - CS Expert -->
+                    <div class="ticket-preview" onclick="openSignInModal()">
+                        <div class="ticket-header">
+                            <div class="ticket-avatar">CS</div>
+                            <div class="ticket-user-info">
+                                <div class="ticket-username">CSGOExpert</div>
+                                <div class="ticket-stats">120+ inspirations</div>
+                            </div>
+                            <div class="ticket-status active">ACTIVE</div>
+                        </div>
+                        <div class="ticket-bet">NaVi vs FaZe - Over 2.5 Maps</div>
+                        <div class="ticket-footer">
+                            <div class="ticket-footer-top">
+                                <div class="ticket-odds">Odds: <span>1.90</span></div>
+                                <div class="ticket-inspired">
+                                    <span>👥</span>
+                                    <span>98 inspired</span>
+                                </div>
+                            </div>
+                            <button class="ticket-copy-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                View Signal
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="widget-expand-toggle" id="expandToggle" onclick="toggleExpandWidget()">
+                        <span id="expandText">Show 3 more signals</span>
+                        <span id="expandIcon">▼</span>
+                    </button>
+
+                    <div class="widget-expandable" id="expandableTickets" style="display: none;">
+                        <!-- Ticket Preview 3 -->
+                        <div class="ticket-preview" onclick="openSignInModal()">
+                            <div class="ticket-header">
+                                <div class="ticket-avatar">DT</div>
+                                <div class="ticket-user-info">
+                                    <div class="ticket-username">DotaMaster</div>
+                                    <div class="ticket-stats">78 inspirations</div>
+                                </div>
+                                <div class="ticket-status active">ACTIVE</div>
+                            </div>
+                            <div class="ticket-bet">Team Liquid ML + First Blood</div>
+                            <div class="ticket-footer">
+                                <div class="ticket-footer-top">
+                                    <div class="ticket-odds">Odds: <span>3.20</span></div>
+                                    <div class="ticket-inspired">
+                                        <span>👥</span>
+                                        <span>42 inspired</span>
+                                    </div>
+                                </div>
+                                <button class="ticket-copy-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                    View Signal
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div class="demo-modal-overlay" id="signInModal">
+        <div class="demo-modal demo-modal-sm">
+            <button class="demo-modal-close" onclick="closeSignInModal()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="demo-modal-icon">🎮</div>
+            <h3 class="demo-modal-title">Sign in to view this signal</h3>
+            <p class="demo-modal-text">Log in to your ArenaMax account to view signal details and choose your stake.</p>
+            <div class="demo-modal-actions">
+                <button class="demo-btn demo-btn-primary" onclick="handleSignIn()">Log In</button>
+                <button class="demo-btn demo-btn-secondary" onclick="handleSignIn()">Sign Up</button>
+            </div>
+            <p class="demo-modal-note">Takes 30 seconds • Uses your existing ArenaMax account</p>
+        </div>
+    </div>
+
+    <!-- Ticket Detail Modal -->
+    <div class="demo-modal-overlay" id="ticketDetailModal">
+        <div class="demo-modal demo-modal-lg">
+            <button class="demo-modal-close" onclick="closeTicketModal()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div class="ticket-modal-left">
+                <div class="ticket-modal-tag">
+                    <span>🎫</span>
+                    <span>TICKET #G2F4N123</span>
+                    <span class="ticket-modal-status">⏳ ACTIVE</span>
+                </div>
+                
+                <h3 class="ticket-modal-heading">4 Selections • Combined Odds: <span class="accent">5.85</span></h3>
+                
+                <div class="ticket-selections">
+                    <div class="ticket-selection-item">
+                        <div class="selection-time">Today | 18:00 <span style="color: #fbbf24;">⏳</span></div>
+                        <div class="selection-match">G2 Esports vs Fnatic</div>
+                        <div class="selection-footer">
+                            <div class="selection-pick">
+                                <span>G2 Esports to Win</span>
+                                <span class="selection-odds">1.70</span>
+                            </div>
+                            <button class="selection-add-btn">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-selection-item">
+                        <div class="selection-time">Today | 20:00 <span style="color: #fbbf24;">⏳</span></div>
+                        <div class="selection-match">NaVi vs FaZe Clan</div>
+                        <div class="selection-footer">
+                            <div class="selection-pick">
+                                <span>Over 2.5 Maps</span>
+                                <span class="selection-odds">1.90</span>
+                            </div>
+                            <button class="selection-add-btn">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-selection-item">
+                        <div class="selection-time">Tomorrow | 18:00 <span style="color: #fbbf24;">⏳</span></div>
+                        <div class="selection-match">Team Liquid vs OG</div>
+                        <div class="selection-footer">
+                            <div class="selection-pick">
+                                <span>Team Liquid ML</span>
+                                <span class="selection-odds">2.10</span>
+                            </div>
+                            <button class="selection-add-btn">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-selection-item">
+                        <div class="selection-time">Tomorrow | 20:00 <span style="color: #fbbf24;">⏳</span></div>
+                        <div class="selection-match">T1 vs Gen.G</div>
+                        <div class="selection-footer">
+                            <div class="selection-pick">
+                                <span>T1 -1.5 Maps</span>
+                                <span class="selection-odds">2.40</span>
+                            </div>
+                            <button class="selection-add-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ticket-modal-right">
+                <div class="ticket-author-card">
+                    <div class="ticket-author-header">
+                        <div class="ticket-author-avatar">G2</div>
+                        <div class="ticket-author-info">
+                            <h4>G2_Superfan</h4>
+                            <span>45 inspirations</span>
+                        </div>
+                    </div>
+                    <div class="ticket-social-proof">
+                        👥 <strong>67 bettors</strong> have been inspired by this ticket
+                    </div>
+                </div>
+                
+                <div class="ticket-stats">
+                    <div class="ticket-stat-row">
+                        <span class="stat-label">Bet Amount</span>
+                        <span class="stat-value">$50</span>
+                    </div>
+                    <div class="ticket-stat-row">
+                        <span class="stat-label">Total Odds</span>
+                        <span class="stat-value accent">5.85</span>
+                    </div>
+                    <div class="ticket-stat-row">
+                        <span class="stat-label">Potential Winnings</span>
+                        <span class="stat-value success">$292.50</span>
+                    </div>
+                </div>
+                
+                <div class="ticket-modal-actions">
+                    <button class="demo-btn demo-btn-primary demo-btn-lg" onclick="addAllToBetslip()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Add all 4 to betslip
+                    </button>
+                    <button class="demo-btn demo-btn-ghost">
+                        👤 View G2_Superfan's profile
+                    </button>
+                </div>
+                
+                <div class="ticket-inspiration-chain">
+                    This ticket was inspired by <a href="#">CSGOExpert's analysis</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analysis Detail Modal -->
+    <div class="analysis-modal-overlay" id="analysisDetailModal">
+        <div class="analysis-modal">
+            <div class="analysis-modal-header">
+                <div>
+                    <div class="source-badge global" style="margin-bottom: 8px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span>Global Community</span>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b;">Expert Esports Analysis</div>
+                </div>
+                <button class="analysis-modal-close" onclick="closeAnalysisDetail()">&times;</button>
+            </div>
+            
+            <div class="analysis-modal-body">
+                <div class="analysis-modal-match">
+                    <div class="match-date" id="modal-match-date">TODAY 18:00</div>
+                    <div class="match-title" id="modal-match-title">G2 Esports vs Fnatic</div>
+                    <div class="match-league" id="modal-match-league">LEC Spring Split • Bo3</div>
+                </div>
+                
+                <div class="analysis-modal-prediction">
+                    <div class="pick-label">PREDICTION</div>
+                    <div class="pick-value" id="modal-prediction">G2 to Win + Over 2.5 Maps</div>
+                    <div class="odds-badge" id="modal-odds">2.85</div>
+                </div>
+                
+                <div class="analysis-modal-content" id="modal-analysis-content">
+                    <h4>📊 Analysis Breakdown</h4>
+                    <p><strong>G2's Recent Form:</strong> G2 has been dominant in the LEC, winning their last 5 matches. Their synergy in the mid-jungle duo with Caps and Yike is unmatched in Europe right now.</p>
+                    <p><strong>Fnatic's Struggles:</strong> Fnatic has been inconsistent, especially in Bo3 formats. Their early game is strong but they struggle to close out games cleanly.</p>
+                    <p><strong>Head-to-Head:</strong> In their last 4 meetings, G2 has won 3 times. The matches have been competitive, with 3 of 4 going to a third game.</p>
+                    <p><strong>Key Factor:</strong> G2's draft flexibility gives them an edge. They can adapt mid-series while Fnatic tends to stick to their comfort picks.</p>
+                </div>
+                
+                <div class="analysis-modal-author">
+                    <div class="author-avatar">G2</div>
+                    <div class="author-info">
+                        <div class="author-name">G2_Analyst</div>
+                        <div class="author-stats">ROI: <span>+12.4%</span> • Record: 67-31</div>
+                    </div>
+                </div>
+                
+                <button class="analysis-modal-cta" onclick="copyAnalysisBet()">
+                    Copy This Bet to Betslip
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation between Games Sidebar, Feed Panel, Competitions Panel, and Analyses Panel
+        function showFeedPanel() {
+            document.querySelector('.games-sidebar').style.display = 'none';
+            document.getElementById('feed-panel').style.display = 'flex';
+            document.getElementById('competitions-panel').style.display = 'none';
+            document.getElementById('analyses-panel').style.display = 'none';
+            
+            document.getElementById('betslipPanel').classList.add('active');
+            document.getElementById('communityWidget').style.display = 'none';
+            document.getElementById('betslipEmpty').classList.add('active');
+            document.getElementById('betslipWithBets').classList.remove('active');
+        }
+
+        function showCompetitionsPanel() {
+            document.querySelector('.games-sidebar').style.display = 'none';
+            document.getElementById('feed-panel').style.display = 'none';
+            document.getElementById('competitions-panel').style.display = 'flex';
+            document.getElementById('analyses-panel').style.display = 'none';
+            
+            document.getElementById('betslipPanel').classList.add('active');
+            document.getElementById('communityWidget').style.display = 'none';
+            document.getElementById('betslipEmpty').classList.add('active');
+            document.getElementById('betslipWithBets').classList.remove('active');
+        }
+
+        function showAnalysesPanel() {
+            document.querySelector('.games-sidebar').style.display = 'none';
+            document.getElementById('feed-panel').style.display = 'none';
+            document.getElementById('competitions-panel').style.display = 'none';
+            document.getElementById('analyses-panel').style.display = 'flex';
+            
+            document.getElementById('betslipPanel').classList.add('active');
+            document.getElementById('communityWidget').style.display = 'none';
+            document.getElementById('betslipEmpty').classList.add('active');
+            document.getElementById('betslipWithBets').classList.remove('active');
+        }
+
+        function showGamesSidebar() {
+            document.querySelector('.games-sidebar').style.display = 'flex';
+            document.getElementById('feed-panel').style.display = 'none';
+            document.getElementById('competitions-panel').style.display = 'none';
+            document.getElementById('analyses-panel').style.display = 'none';
+            
+            document.getElementById('betslipPanel').classList.remove('active');
+            document.getElementById('communityWidget').style.display = 'block';
+        }
+
+        function showCommunityWidget() {
+            document.getElementById('betslipPanel').classList.remove('active');
+            document.getElementById('communityWidget').style.display = 'block';
+        }
+
+        // Feed tab switching
+        function switchFeedTab(tabName) {
+            document.querySelectorAll('.feed-tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            document.querySelectorAll('#feed-panel .tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById('feed-tab-' + tabName).style.display = 'block';
+            
+            const activeBtn = document.querySelector(`#feed-panel .tab-button[data-feed-tab="${tabName}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        // Competitions tab switching
+        function switchCompetitionsTab(tabName) {
+            document.querySelectorAll('.comp-tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            document.querySelectorAll('#competitions-panel .tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const tabContent = document.getElementById('comp-tab-' + tabName);
+            if (tabContent) {
+                tabContent.style.display = 'block';
+            }
+            
+            const activeBtn = document.querySelector(`#competitions-panel .tab-button[data-comp-tab="${tabName}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        // Widget expand toggle
+        function toggleExpandWidget() {
+            const expandable = document.getElementById('expandableTickets');
+            const expandText = document.getElementById('expandText');
+            const expandIcon = document.getElementById('expandIcon');
+            
+            if (expandable.style.display === 'none') {
+                expandable.style.display = 'block';
+                expandText.textContent = 'Show less';
+                expandIcon.textContent = '▲';
+            } else {
+                expandable.style.display = 'none';
+                expandText.textContent = 'Show 3 more signals';
+                expandIcon.textContent = '▼';
+            }
+        }
+
+        // Modal functions
+        function openSignInModal() {
+            document.getElementById('signInModal').classList.add('active');
+        }
+
+        function closeSignInModal() {
+            document.getElementById('signInModal').classList.remove('active');
+        }
+
+        function handleSignIn() {
+            closeSignInModal();
+            document.getElementById('ticketDetailModal').classList.add('active');
+        }
+
+        function closeTicketModal() {
+            document.getElementById('ticketDetailModal').classList.remove('active');
+        }
+
+        function addAllToBetslip() {
+            closeTicketModal();
+            
+            document.getElementById('communityWidget').style.display = 'none';
+            document.getElementById('betslipPanel').classList.add('active');
+            document.getElementById('betslipEmpty').classList.remove('active');
+            document.getElementById('betslipWithBets').classList.add('active');
+        }
+
+        // Analyses Data for E-sports
+        const analysesData = {
+            1: {
+                match: 'G2 Esports vs Fnatic',
+                league: 'LEC Spring Split • Bo3',
+                date: 'TODAY 18:00',
+                prediction: 'G2 to Win + Over 2.5 Maps',
+                odds: '2.85',
+                stake: '$300',
+                win: '$855',
+                confidence: 8,
+                author: 'G2_Analyst',
+                roi: '+12.4%',
+                record: '67-31',
+                content: `<h4>📊 Analysis Breakdown</h4>
+                    <p><strong>G2's Recent Form:</strong> G2 has been dominant in the LEC, winning their last 5 matches. Their synergy in the mid-jungle duo with Caps and Yike is unmatched in Europe right now.</p>
+                    <p><strong>Fnatic's Struggles:</strong> Fnatic has been inconsistent, especially in Bo3 formats. Their early game is strong but they struggle to close out games cleanly.</p>
+                    <p><strong>Head-to-Head:</strong> In their last 4 meetings, G2 has won 3 times. The matches have been competitive, with 3 of 4 going to a third game.</p>
+                    <p><strong>Key Factor:</strong> G2's draft flexibility gives them an edge. They can adapt mid-series while Fnatic tends to stick to their comfort picks.</p>`
+            },
+            2: {
+                match: 'NaVi vs FaZe Clan',
+                league: 'BLAST Premier • Bo3',
+                date: 'TODAY 20:00',
+                prediction: 'NaVi ML + s1mple Over 1.5 Rating',
+                odds: '2.40',
+                stake: '$250',
+                win: '$600',
+                confidence: 7,
+                author: 'CSGOProphet',
+                roi: '+18.2%',
+                record: '52-24',
+                content: `<h4>📊 Analysis Breakdown</h4>
+                    <p><strong>NaVi's Form:</strong> NaVi has been on fire since their roster changes. s1mple is back to his MVP-level performances, averaging 1.35 rating in the last 10 maps.</p>
+                    <p><strong>FaZe's Weakness:</strong> FaZe has struggled against disciplined teams. Their aggressive style often gets punished by NaVi's tactical approach.</p>
+                    <p><strong>Map Pool:</strong> NaVi has a significant advantage on Nuke and Ancient. FaZe will need to force Inferno to have a chance.</p>
+                    <p><strong>The Edge:</strong> s1mple historically dominates against FaZe. In their last 5 matchups, he's averaged 1.42 rating. Expect him to show up big.</p>`
+            },
+            3: {
+                match: 'T1 vs Gen.G',
+                league: 'LCK Spring Split • Bo3',
+                date: 'TOMORROW 14:00',
+                prediction: 'T1 -1.5 Maps',
+                odds: '2.15',
+                stake: '$400',
+                win: '$860',
+                confidence: 6,
+                author: 'LCK_Expert',
+                roi: '+9.1%',
+                record: '89-56',
+                content: `<h4>📊 Analysis Breakdown</h4>
+                    <p><strong>T1's Dominance:</strong> T1 has been unstoppable in the LCK, dropping only 2 maps this split. Faker and the team are in championship form.</p>
+                    <p><strong>Gen.G's Challenge:</strong> Gen.G is a strong team, but they've struggled to match T1's tempo. Their passive early game style plays into T1's hands.</p>
+                    <p><strong>Recent H2H:</strong> T1 has won their last 3 meetings, with 2 of those being clean 2-0 sweeps.</p>
+                    <p><strong>Risk Factor:</strong> Gen.G has upset potential if Chovy pops off. But T1's team coordination is simply superior right now.</p>`
+            }
+        };
+
+        // Analysis modal functions
+        function openAnalysisDetail(id) {
+            const data = analysesData[id];
+            if (!data) return;
+            
+            document.getElementById('modal-match-date').textContent = data.date;
+            document.getElementById('modal-match-title').textContent = data.match;
+            document.getElementById('modal-match-league').textContent = data.league;
+            document.getElementById('modal-prediction').textContent = data.prediction;
+            document.getElementById('modal-odds').textContent = data.odds;
+            document.getElementById('modal-analysis-content').innerHTML = data.content;
+            
+            // Update author info
+            const authorSection = document.querySelector('.analysis-modal-author');
+            if (authorSection) {
+                authorSection.querySelector('.author-avatar').textContent = data.author.charAt(0);
+                authorSection.querySelector('.author-name').textContent = data.author;
+                authorSection.querySelector('.author-stats').innerHTML = `ROI: <span>${data.roi}</span> • Record: ${data.record}`;
+            }
+            
+            document.getElementById('analysisDetailModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAnalysisDetail() {
+            document.getElementById('analysisDetailModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function copyAnalysisBet() {
+            closeAnalysisDetail();
+            
+            document.getElementById('communityWidget').style.display = 'none';
+            document.getElementById('betslipPanel').classList.add('active');
+            document.getElementById('betslipEmpty').classList.remove('active');
+            document.getElementById('betslipWithBets').classList.add('active');
+        }
+
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const navFeed = document.getElementById('nav-feed');
+            const navCompetitions = document.getElementById('nav-competitions');
+            const navAnalyses = document.getElementById('nav-analyses');
+
+            if (navFeed) navFeed.addEventListener('click', showFeedPanel);
+            if (navCompetitions) navCompetitions.addEventListener('click', showCompetitionsPanel);
+            if (navAnalyses) navAnalyses.addEventListener('click', showAnalysesPanel);
+
+            // Place bet button
+            const placeBetBtn = document.getElementById('placeBetBtn');
+            if (placeBetBtn) {
+                placeBetBtn.addEventListener('click', function() {
+                    this.style.display = 'none';
+                    document.getElementById('betslipAccepted').classList.add('active');
+                });
+            }
+
+            // URL parameter handling
+            const urlParams = new URLSearchParams(window.location.search);
+            const viewParam = urlParams.get('view');
+            
+            if (viewParam === 'feed') {
+                showFeedPanel();
+            } else if (viewParam === 'competitions') {
+                showCompetitionsPanel();
+            }
+        });
+
+        // Close modals on overlay click
+        document.querySelectorAll('.demo-modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.demo-modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                // Also close analysis modal
+                const analysisModal = document.getElementById('analysisDetailModal');
+                if (analysisModal && analysisModal.classList.contains('active')) {
+                    closeAnalysisDetail();
+                }
+            }
+        });
+
+        // Close analysis modal on overlay click
+        document.getElementById('analysisDetailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAnalysisDetail();
+            }
+        });
+    </script>
+</body>
+</html>
